@@ -1,4 +1,5 @@
 import { Title } from "@solidjs/meta";
+import { createResource } from "solid-js";
 import fs from "node:fs";
 
 function getComments() {
@@ -16,7 +17,9 @@ function addComment(comment: string) {
     fs.writeFileSync("comments.json", JSON.stringify(comments));
 }
 
-export default async function Home() {
+export default function Home() {
+  const [comments, { refetch }] = createResource(getComments);
+
   return (
     <main>
       <Title>Hello World</Title>
@@ -25,11 +28,14 @@ export default async function Home() {
       <div>
         <h2>Comments</h2>
         <ul>
-          {getComments().map((comment: string) => (
-            <li>{comment}</li>
+          {comments()?.map((comment: string) => (
+            <li innerHTML={comment}></li>
           ))}
         </ul>
       </div>
+      <button onClick={async () => {addComment("Test comment"); refetch();}}>Test</button>
+      <button onClick={async () => {addComment("<b>test</b>"); refetch();}}>Unescaped HTML</button>
+      <button onClick={async () => {addComment("<script>alert('XSS')</script>"); refetch();}}>XSS</button>
     </main>
   );
 }
