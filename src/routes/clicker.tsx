@@ -1,5 +1,7 @@
 import { Title } from "@solidjs/meta";
-import { createSignal } from "solid-js";
+import { createSignal, onMount } from "solid-js";
+import "./clicker.css";
+import SubmitPass from "components/SubmitPass";
 
 let [clicks, setClicks] = createSignal(0);
 
@@ -38,14 +40,28 @@ function importSave() {
 }
 
 export default function Clicker() {
+  onMount(() => {
+    const oldAlert = window.alert;
+    window.alert = (...args) => {
+      console.log("Alert called");
+      oldAlert(...args);
+    }
+    window.localStorage.setItem("password", "another_password_456");
+  });
+
   return (
-    <main>
-      <Title>Clicker</Title>
-      <h1>Clicker</h1>
-      <p innerHTML={`Clicks: ${clicks()}`}></p>
-      <button onClick={click}>Click me!</button>
-      <button onClick={exportSave}>Export Save</button>
-      <button onClick={importSave}>Import Save</button>
-    </main>
+    <>
+      <main>
+        <Title>Clicker</Title>
+        <h1>Clicker</h1>
+        <p innerHTML={`Clicks: ${clicks()}`}></p>
+        <button class="clicker" onClick={click}>Click me!</button>
+        <div class="save">
+          <button class="export-save" onClick={exportSave}>Export Save</button>
+          <button class="import-save" onClick={importSave}>Import Save</button>
+        </div>
+      </main>
+      <SubmitPass />
+    </>
   );
 }

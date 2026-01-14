@@ -1,0 +1,20 @@
+button:hover {
+  background-color: #6495ed;
+}
+button.submit {
+  background-color: #28a745;
+}
+button.submit:hover {
+  background-color: #218838;
+}
+
+input.correct {
+  border: 2px solid #28a745;
+}
+input.incorrect {
+  border: 2px solid #dc3545;
+}
+
+.success {
+    padding: 16px;
+}

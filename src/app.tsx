@@ -10,8 +10,9 @@ export default function App() {
       root={props => (
         <MetaProvider>
           <Title>SolidStart - Basic</Title>
-          <a href="/">Index</a>
-          <a href="/clicker">Clicker</a>
+          {/* <a href="/">Index</a>
+          <a href="/search">Search</a>
+          <a href="/clicker">Clicker</a> */}
           <Suspense>{props.children}</Suspense>
         </MetaProvider>
       )}
