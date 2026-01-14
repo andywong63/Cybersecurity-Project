@@ -1,0 +1,48 @@
+.hint-container {
+  margin: 20px 0;
+}
+
+.hint-button {
+  background-color: #ff9800;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.hint-button:hover {
+  background-color: #e68900;
+}
+
+.hint-box {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #fff3cd;
+  border-left: 4px solid #ff9800;
+  border-radius: 4px;
+  color: #333;
+}
+
+.hint-box p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+
+.hint-box + .hint-box {
+  margin-top: 10px;
+}
+
+.hint-solution {
+  background-color: #d4edda;
+  border-left-color: #28a745;
+}
+
+.show-solution {
+  background-color: #199937;
+}
+.show-solution:hover {
+  background-color: #147a2b;
+}
