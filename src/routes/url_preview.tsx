@@ -4,6 +4,10 @@ import SubmitPass from "components/SubmitPass";
 import "./url_preview.css";
 import MultiHintBox from "components/MultiHintBox";
 
+let p1 = "aWZyYW1lLX";
+let p2 = "hc3N3b3";
+let p3 = "JkX2FiYzEyMyMj";
+
 export default function IframePage() {
   const [url, setUrl] = createSignal("");
   const [iframeUrl, setIframeUrl] = createSignal("");
@@ -14,7 +18,7 @@ export default function IframePage() {
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", "iframe-password_abc123##");
+    window.localStorage.setItem("password", atob(p1 + p2 + p3));
   });
 
   const handleLoadUrl = () => {
@@ -58,3 +62,5 @@ export default function IframePage() {
     </>
   );
 }
+
+p1 += "B";

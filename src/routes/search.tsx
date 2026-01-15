@@ -4,6 +4,11 @@ import "./search.css";
 import SubmitPass from "components/SubmitPass";
 import MultiHintBox from "components/MultiHintBox";
 
+let p1 = "c3VwZXJ";
+let p2 = "zZWN";
+let p3 = "yZXRwYXNzd";
+let p4 = "29yZCMxMjM=";
+
 export default function Search() {
   const [query, setQuery] = createSignal("");
   const [results, setResults] = createSignal("");
@@ -14,7 +19,7 @@ export default function Search() {
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", "supersecretpassword#123");
+    window.localStorage.setItem("password", atob(p1 + p2 + p3 + p4));
   });
 
   const handleSearch = () => {

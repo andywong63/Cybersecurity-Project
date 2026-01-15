@@ -16,6 +16,11 @@
   background-color: #e68900;
 }
 
+.hint-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 .hint-box {
   margin-top: 10px;
   padding: 15px;
@@ -45,4 +50,9 @@
 }
 .show-solution:hover {
   background-color: #147a2b;
+}
+
+.show-solution:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

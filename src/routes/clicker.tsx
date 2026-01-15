@@ -4,6 +4,10 @@ import "./clicker.css";
 import SubmitPass from "components/SubmitPass";
 import MultiHintBox from "components/MultiHintBox";
 
+let p1 = "YW5vdGhlc";
+let p2 = "l9wYXNzd";
+let p3 = "29yZF80NTY=";
+
 let [clicks, setClicks] = createSignal(0);
 
 function click() {
@@ -47,7 +51,7 @@ export default function Clicker() {
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", "another_password_456");
+    window.localStorage.setItem("password", atob(p1 + p2 + p3));
   });
 
   return (

@@ -3,6 +3,10 @@ import { createSignal, onMount, Show } from "solid-js";
 import MultiHintBox from "components/MultiHintBox";
 import SubmitPass from "components/SubmitPass";
 
+let p1 = "ZmluYW";
+let p2 = "hc3N3b3JkQGNvbXBsZXRlZA";
+let p3 = "uc2VjcmV0X3B";
+
 export default function Gallery() {
   const [imageUrl, setImageUrl] = createSignal("");
   const [imageHtml, setImageHtml] = createSignal("");
@@ -13,7 +17,7 @@ export default function Gallery() {
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", "final.secret_password@completed");
+    window.localStorage.setItem("password", atob(p1 + p3 + p2));
   });
 
   const handleAddImage = () => {
@@ -52,3 +56,5 @@ export default function Gallery() {
     </>
   );
 }
+
+p1 += "w"

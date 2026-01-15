@@ -3,10 +3,18 @@ import "./HintBox.css";
 
 export default function MultiHintBox(props: { hints: string[] }) {
   const [revealedHints, setRevealedHints] = createSignal(0);
+  const [showHintCooldown, setShowHintCooldown] = createSignal(false);
 
   const showNextHint = () => {
+    if (showHintCooldown()) {
+      return;
+    }
     if (revealedHints() < props.hints.length) {
       setRevealedHints(revealedHints() + 1);
+      setShowHintCooldown(true);
+      setTimeout(() => {
+        setShowHintCooldown(false);
+      }, 10000);
     }
   };
 
@@ -27,6 +35,7 @@ export default function MultiHintBox(props: { hints: string[] }) {
           class="hint-button"
           classList={{ "show-solution": revealedHints() === props.hints.length - 1 }}
           onClick={showNextHint}
+          disabled={showHintCooldown()}
         >
           {showHintText()}
         </button>
