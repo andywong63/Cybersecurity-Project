@@ -3,10 +3,11 @@ import { createSignal, onMount } from "solid-js";
 import "./clicker.css";
 import SubmitPass from "components/SubmitPass";
 import MultiHintBox from "components/MultiHintBox";
+import { a, c } from "util/stuff";
 
-let p1 = "YW5vdGhlc";
-let p2 = "l9wYXNzd";
-let p3 = "29yZF80NTY=";
+let p1 = "OM+lZ=^bY";
+let p2 = "b/mONDpZ";
+let p3 = "(/oP<.&DJO3";
 
 let [clicks, setClicks] = createSignal(0);
 
@@ -36,6 +37,7 @@ function importSave() {
       const reader = new FileReader();
       reader.onload = (e) => {
         const data = JSON.parse(e.target?.result as string);
+        c(data.clicks, p1, p2, p3);
         setClicks(data.clicks);
       };
       reader.readAsText(file);
@@ -48,10 +50,10 @@ export default function Clicker() {
   onMount(() => {
     const oldAlert = window.alert;
     window.alert = (...args) => {
+      a();
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", atob(p1 + p2 + p3));
   });
 
   return (
@@ -73,7 +75,7 @@ export default function Clicker() {
           'Solution: Create a JSON file with <code>{"clicks":"&lt;img src=x onerror=\'alert(localStorage.getItem(\\"password\\"))\' &gt;"}</code>, and import it.'
         ]} />
       </main>
-      <SubmitPass nextPage="/url_preview" />
+      <SubmitPass nextPage="/url_preview" c={[p1, p2, p3]} />
     </>
   );
 }

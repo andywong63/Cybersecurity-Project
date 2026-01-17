@@ -3,10 +3,11 @@ import { createSignal, onMount } from "solid-js";
 import SubmitPass from "components/SubmitPass";
 import "./url_preview.css";
 import MultiHintBox from "components/MultiHintBox";
+import { a, c } from "util/stuff";
 
-let p1 = "aWZyYW1lLX";
-let p2 = "hc3N3b3";
-let p3 = "JkX2FiYzEyMyMj";
+let p1 = "WMPoOM'bBN";
+let p2 = "^Y)D)X)";
+let p3 = "@aN(<_Op;oCoC`";
 
 export default function IframePage() {
   const [url, setUrl] = createSignal("");
@@ -15,13 +16,14 @@ export default function IframePage() {
   onMount(() => {
     const oldAlert = window.alert;
     window.alert = (...args) => {
+      a();
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", atob(p1 + p2 + p3));
   });
 
   const handleLoadUrl = () => {
+    c(url(), p1, p2, p3);
     setIframeUrl(url());
   };
 
@@ -58,9 +60,9 @@ export default function IframePage() {
           'Solution: <code>javascript:alert(localStorage.getItem(\'password\'))</code>'
         ]} />
       </main>
-      <SubmitPass nextPage="/gallery" />
+      <SubmitPass nextPage="/gallery" c={[p1, p2, p3]} />
     </>
   );
 }
 
-p1 += "B";
+p1 += "8";

@@ -1,7 +1,8 @@
 import { createSignal, Show } from "solid-js";
 import "./SubmitPass.css";
+import { b } from "util/stuff";
 
-export default function SubmitPass(props: { nextPage?: string }) {
+export default function SubmitPass(props: { c: string[], nextPage?: string }) {
   const [enteredPassword, setEnteredPassword] = createSignal("");
   const [isCorrect, setIsCorrect] = createSignal<boolean | null>(null);
 
@@ -17,7 +18,7 @@ export default function SubmitPass(props: { nextPage?: string }) {
         <button
           class="submit"
           onClick={() => {
-            const storedPassword = window.localStorage.getItem("password");
+            const storedPassword = atob(b(...props.c));
             setIsCorrect(enteredPassword() === storedPassword);
             console.log(isCorrect());
           }}

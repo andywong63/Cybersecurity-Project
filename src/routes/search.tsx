@@ -3,11 +3,12 @@ import { createSignal, onMount, Show } from "solid-js";
 import "./search.css";
 import SubmitPass from "components/SubmitPass";
 import MultiHintBox from "components/MultiHintBox";
+import { a, c } from "util/stuff";
 
-let p1 = "c3VwZXJ";
-let p2 = "zZWN";
-let p3 = "yZXRwYXNzd";
-let p4 = "29yZCMxMjM=";
+let p1 = "Y)LmPN@";
+let p2 = "PMD";
+let p3 = "oPNHmONDpZ";
+let p4 = "(/oP9CnC`C3";
 
 export default function Search() {
   const [query, setQuery] = createSignal("");
@@ -16,13 +17,14 @@ export default function Search() {
   onMount(() => {
     const oldAlert = window.alert;
     window.alert = (...args) => {
+      a();
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", atob(p1 + p2 + p3 + p4));
   });
 
   const handleSearch = () => {
+    c(query(), p1, p2, p3, p4);
     setResults(query());
   };
 
@@ -48,7 +50,9 @@ export default function Search() {
           'Solution: <code>&lt;img src=x onerror="alert(localStorage.getItem(\'password\'))"&gt;</code>'
         ]} />
       </main>
-      <SubmitPass nextPage="/clicker" />
+      <SubmitPass nextPage="/clicker" c={[p1, p2, p3, p4]} />
     </>
   );
 }
+
+p2 = p2.slice(0, 1).toLowerCase() + p2

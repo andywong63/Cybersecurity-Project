@@ -2,10 +2,11 @@ import { Title } from "@solidjs/meta";
 import { createSignal, onMount, Show } from "solid-js";
 import MultiHintBox from "components/MultiHintBox";
 import SubmitPass from "components/SubmitPass";
+import { a, c } from "util/stuff";
 
-let p1 = "ZmluYW";
-let p2 = "hc3N3b3JkQGNvbXBsZXRlZA";
-let p3 = "uc2VjcmV0X3B";
+let p1 = "PcbkOM";
+let p2 = "^Y)D)X)@aG=DlXN8iPNHbP7";
+let p3 = "kY(L`YcL&N)8";
 
 export default function Gallery() {
   const [imageUrl, setImageUrl] = createSignal("");
@@ -14,13 +15,14 @@ export default function Gallery() {
   onMount(() => {
     const oldAlert = window.alert;
     window.alert = (...args) => {
+      a();
       console.log("Alert called");
       oldAlert(...args);
     }
-    window.localStorage.setItem("password", atob(p1 + p3 + p2));
   });
 
   const handleAddImage = () => {
+    c(imageUrl(), p1, p3, p2);
     setImageHtml(`<img src="${imageUrl()}" alt="User image" style="max-width: 400px; margin-top: 20px;" />`);
   };
 
@@ -52,9 +54,9 @@ export default function Gallery() {
           'Solution: <code>" onerror="alert(localStorage.getItem(\'password\'))</code>'
         ]} />
       </main>
-      <SubmitPass nextPage="/" />
+      <SubmitPass nextPage="/" c={[p1, p3, p2]} />
     </>
   );
 }
 
-p1 += "w"
+p1 += "m"
